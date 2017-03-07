@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="gtest,c++,unit test," />
 
 
 
@@ -86,15 +86,31 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zillion's Notes">
-<meta property="og:url" content="http://haitongz.github.io/tags/hexo/index.html">
+<meta name="description" content="C++ 对私有成员的单元测试本文记录了如果用 gtest 对 C++ 进行单元测试
+Why既然是类私有成员当然是不希望外部可以访问的，会提示私有成员无法访问。
+HowC++ 如果想在外部访问类的私有成员，可以将外部函数定义成友元；gtest 正是使用此方法，将对应的测试函数定义成类的友元。付出的代价是对原代码的侵入。
+我们用一个例子来描述：
+原始类：
+123456789class Example&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 对私有成员的单元测试c++ unit test for class private member">
+<meta property="og:url" content="http://haitongz.github.io/2017/03/07/c-unit-test-for-class-private-member/index.html">
 <meta property="og:site_name" content="Zillion's Notes">
-<meta property="og:description">
+<meta property="og:description" content="C++ 对私有成员的单元测试本文记录了如果用 gtest 对 C++ 进行单元测试
+Why既然是类私有成员当然是不希望外部可以访问的，会提示私有成员无法访问。
+HowC++ 如果想在外部访问类的私有成员，可以将外部函数定义成友元；gtest 正是使用此方法，将对应的测试函数定义成类的友元。付出的代价是对原代码的侵入。
+我们用一个例子来描述：
+原始类：
+123456789class Example&amp;">
+<meta property="og:updated_time" content="2017-03-07T15:28:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zillion's Notes">
-<meta name="twitter:description">
+<meta name="twitter:title" content="C++ 对私有成员的单元测试c++ unit test for class private member">
+<meta name="twitter:description" content="C++ 对私有成员的单元测试本文记录了如果用 gtest 对 C++ 进行单元测试
+Why既然是类私有成员当然是不希望外部可以访问的，会提示私有成员无法访问。
+HowC++ 如果想在外部访问类的私有成员，可以将外部函数定义成友元；gtest 正是使用此方法，将对应的测试函数定义成类的友元。付出的代价是对原代码的侵入。
+我们用一个例子来描述：
+原始类：
+123456789class Example&amp;">
 
 
 
@@ -112,7 +128,7 @@
   };
 </script>
 
-  <title> 标签: hexo | Zillion's Notes </title>
+  <title> C++ 对私有成员的单元测试c++ unit test for class private member | Zillion's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,7 +159,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -231,46 +247,162 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        hexo
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C++ 对私有成员的单元测试c++ unit test for class private member
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-07T22:30:16+08:00" content="2017-03-07">
+              2017-03-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/07/c-unit-test-for-class-private-member/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/07/c-unit-test-for-class-private-member/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/07/c-unit-test-for-class-private-member/" class="leancloud_visitors" data-flag-title="C++ 对私有成员的单元测试c++ unit test for class private member">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h1 id="C-对私有成员的单元测试"><a href="#C-对私有成员的单元测试" class="headerlink" title="C++ 对私有成员的单元测试"></a>C++ 对私有成员的单元测试</h1><p>本文记录了如果用 gtest 对 C++ 进行单元测试</p>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>既然是类私有成员当然是不希望外部可以访问的，会提示私有成员无法访问。</p>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>C++ 如果想在外部访问类的私有成员，可以将外部函数定义成友元；<br>gtest 正是使用此方法，将对应的测试函数定义成类的友元。<br>付出的代价是对原代码的侵入。</p>
+<p>我们用一个例子来描述：</p>
+<p>原始类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Example</span><br><span class="line">&#123;</span><br><span class="line">  public:</span><br><span class="line">    Example():number(0)&#123;&#125;</span><br><span class="line">    ...</span><br><span class="line">  private:</span><br><span class="line">    SetNum();</span><br><span class="line">    int number;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="测试-Example-私有成员"><a href="#测试-Example-私有成员" class="headerlink" title="测试 Example 私有成员:"></a>测试 Example 私有成员:</h3><ul>
+<li>需要在代码文件中增加 gtest 头文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;gtest/gtest_prod.h&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Example类增加gtest提供的宏FRIEND_TEST</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FRIEND_TEST(ExmapleTest, testSetNum);</span><br></pre></td></tr></table></figure>
+<p>表示把TEST(ExampleTest, testSetNum) 设置为友元</p>
+<p>此时的类文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;gtest/gtest_prod.h&quot;</span><br><span class="line">class Example</span><br><span class="line">&#123;</span><br><span class="line">  public:</span><br><span class="line">    Example():number(0)&#123;&#125;</span><br><span class="line">    ...</span><br><span class="line">    FRIEND_TEST(ExampleTest, testSetNum);</span><br><span class="line">  private:</span><br><span class="line">    SetNum();</span><br><span class="line">    int number;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TEST(ExampleTest, testNumber)&#123;</span><br><span class="line">Example example;</span><br><span class="line">SetNum(1);</span><br><span class="line">...</span><br><span class="line">EXPECT_EQ(1,example.number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注: 有 namespace 时需要保持与被测试类一致</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/05/18/hello-world-hexo/" itemprop="url">
-              
-                <span itemprop="name">hexo hello world</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-18T17:54:24+08:00"
-              content="2016-05-18" >
-          05-18
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gtest/" rel="tag">#gtest</a>
+          
+            <a href="/tags/c/" rel="tag">#c++</a>
+          
+            <a href="/tags/unit-test/" rel="tag">#unit test</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/28/vim-practice/" rel="next" title="vim practice (草稿)">
+                <i class="fa fa-chevron-left"></i> vim practice (草稿)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -278,6 +410,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -297,8 +440,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7xo3s6.com1.z0.glb.clouddn.com/avator.png"
@@ -355,6 +507,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-对私有成员的单元测试"><span class="nav-number">1.</span> <span class="nav-text">C++ 对私有成员的单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">1.1.</span> <span class="nav-text">Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">1.2.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-Example-私有成员"><span class="nav-number">1.2.1.</span> <span class="nav-text">测试 Example 私有成员:</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -458,6 +621,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -474,9 +641,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'haitongz';
-      var disqus_identifier = 'tags/hexo/index.html';
-      var disqus_title = '';
-      var disqus_url = '';
+      var disqus_identifier = '2017/03/07/c-unit-test-for-class-private-member/';
+      var disqus_title = 'C++ 对私有成员的单元测试c++ unit test for class private member';
+      var disqus_url = 'http://haitongz.github.io/2017/03/07/c-unit-test-for-class-private-member/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -487,6 +654,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   

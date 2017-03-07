@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haitongz.github.io/"/>
-  <updated>2016-05-20T02:09:50.000Z</updated>
+  <updated>2017-03-07T15:28:36.000Z</updated>
   <id>http://haitongz.github.io/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ 对私有成员的单元测试c++ unit test for class private member</title>
+    <link href="http://haitongz.github.io/2017/03/07/c-unit-test-for-class-private-member/"/>
+    <id>http://haitongz.github.io/2017/03/07/c-unit-test-for-class-private-member/</id>
+    <published>2017-03-07T14:30:16.000Z</published>
+    <updated>2017-03-07T15:28:36.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;C-对私有成员的单元测试&quot;&gt;&lt;a href=&quot;#C-对私有成员的单元测试&quot; class=&quot;headerlink&quot; title=&quot;C++ 对私有成员的单元测试&quot;&gt;&lt;/a&gt;C++ 对私有成员的单元测试&lt;/h1&gt;&lt;p&gt;本文记录了如果用 gtest 对 C++ 进行单元测试&lt;/p&gt;
+&lt;h2 id=&quot;Why&quot;&gt;&lt;a href=&quot;#Why&quot; class=&quot;headerlink&quot; title=&quot;Why&quot;&gt;&lt;/a&gt;Why&lt;/h2&gt;&lt;p&gt;既然是类私有成员当然是不希望外部可以访问的，会提示私有成员无法访问。&lt;/p&gt;
+&lt;h2 id=&quot;How&quot;&gt;&lt;a href=&quot;#How&quot; class=&quot;headerlink&quot; title=&quot;How&quot;&gt;&lt;/a&gt;How&lt;/h2&gt;&lt;p&gt;C++ 如果想在外部访问类的私有成员，可以将外部函数定义成友元；&lt;br&gt;gtest 正是使用此方法，将对应的测试函数定义成类的友元。&lt;br&gt;付出的代价是对原代码的侵入。&lt;/p&gt;
+&lt;p&gt;我们用一个例子来描述：&lt;/p&gt;
+&lt;p&gt;原始类：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Example&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Example():number(0)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  private:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    SetNum();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int number;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;测试-Example-私有成员&quot;&gt;&lt;a href=&quot;#测试-Example-私有成员&quot; class=&quot;headerlink&quot; title=&quot;测试 Example 私有成员:&quot;&gt;&lt;/a&gt;测试 Example 私有成员:&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;需要在代码文件中增加 gtest 头文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#include &amp;quot;gtest/gtest_prod.h&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Example类增加gtest提供的宏FRIEND_TEST&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;FRIEND_TEST(ExmapleTest, testSetNum);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;表示把TEST(ExampleTest, testSetNum) 设置为友元&lt;/p&gt;
+&lt;p&gt;此时的类文件：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#include &amp;quot;gtest/gtest_prod.h&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class Example&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Example():number(0)&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    FRIEND_TEST(ExampleTest, testSetNum);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  private:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    SetNum();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int number;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;测试代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;TEST(ExampleTest, testNumber)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Example example;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SetNum(1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EXPECT_EQ(1,example.number);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注: 有 namespace 时需要保持与被测试类一致&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;C-对私有成员的单元测试&quot;&gt;&lt;a href=&quot;#C-对私有成员的单元测试&quot; class=&quot;headerlink&quot; title=&quot;C++ 对私有成员的单元测试&quot;&gt;&lt;/a&gt;C++ 对私有成员的单元测试&lt;/h1&gt;&lt;p&gt;本文记录了如果用 gtest 对 C++ 进行单元测
+    
+    </summary>
+    
+    
+      <category term="gtest" scheme="http://haitongz.github.io/tags/gtest/"/>
+    
+      <category term="c++" scheme="http://haitongz.github.io/tags/c/"/>
+    
+      <category term="unit test" scheme="http://haitongz.github.io/tags/unit-test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim practice (草稿)</title>
+    <link href="http://haitongz.github.io/2016/05/28/vim-practice/"/>
+    <id>http://haitongz.github.io/2016/05/28/vim-practice/</id>
+    <published>2016-05-28T06:27:30.000Z</published>
+    <updated>2017-03-07T15:25:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Vim 本文主要讲vim的学习，适用对象：码农&lt;/p&gt;
+&lt;h2 id=&quot;入门（她没有你想得那么难）&quot;&gt;&lt;a href=&quot;#入门（她没有你想得那么难）&quot; class=&quot;headerlink&quot; title=&quot;入门（她没有你想得那么难）&quot;&gt;&lt;/a&gt;入门（她没有你想得那么难）&lt;/h2&gt;&lt;p&gt;推荐coolshell的&lt;a href=&quot;http://coolshell.cn/articles/5426.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;简明 Vim 练级攻略&lt;/a&gt; 以及 &lt;a href=&quot;http://coolshell.cn/articles/5479.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;给程序员的VIM速查卡&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;建议初学者把速查卡打印下来，最好是彩色打印下来粘贴在电脑旁边。&lt;/p&gt;
+&lt;h2 id=&quot;深入-原来她这么美&quot;&gt;&lt;a href=&quot;#深入-原来她这么美&quot; class=&quot;headerlink&quot; title=&quot;深入 (原来她这么美)&quot;&gt;&lt;/a&gt;深入 (原来她这么美)&lt;/h2&gt;&lt;h3 id=&quot;迷茫&quot;&gt;&lt;a href=&quot;#迷茫&quot; class=&quot;headerlink&quot; title=&quot;迷茫&quot;&gt;&lt;/a&gt;迷茫&lt;/h3&gt;&lt;p&gt;入门相信大多数人都没有问题，这个时候基本的vim操作已经不在话下。接下来大家遇到的问题往往是:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vim 不能满足开发需求&lt;/li&gt;
+&lt;li&gt;vim 的插件好难配置，没有统一的插件管理工具&lt;/li&gt;
+&lt;li&gt;vim 找不到合适自己用的插件&lt;/li&gt;
+&lt;li&gt;插件竟然有bug，快捷键冲突&lt;/li&gt;
+&lt;li&gt;vim 不够智能，希望像IDE那样&lt;/li&gt;
+&lt;li&gt;懒，没有时间了解和配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;放弃-忍受&quot;&gt;&lt;a href=&quot;#放弃-忍受&quot; class=&quot;headerlink&quot; title=&quot;放弃/忍受&quot;&gt;&lt;/a&gt;放弃/忍受&lt;/h3&gt;&lt;p&gt;结果就是要么继续忍受不够强大的裸vim/配置麻烦的vim,要不就转向了IDE的怀抱&lt;/p&gt;
+&lt;h3 id=&quot;神器&quot;&gt;&lt;a href=&quot;#神器&quot; class=&quot;headerlink&quot; title=&quot;神器&quot;&gt;&lt;/a&gt;神器&lt;/h3&gt;&lt;p&gt;其实办法是有的，经历各种插件折磨后，发现此等&lt;strong&gt;神器&lt;/strong&gt;&lt;a href=&quot;https://github.com/spf13/spf13-vim&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;spf13-vim&lt;/a&gt;， 再也不用瞎折腾了。&lt;br&gt;她是vim 插件与配置的一个发行版本，包括一整套精心挑选的常用插件，基于Vundle的插件管理方式方便扩展以及更新，大大降低vim 的折腾成本，你值得拥有。不仅如此她适用于Vim, GVim和MacVim，可运行在Windows, Linux, Mac上。总之熟悉了她，你可以在任何有网络的地方，分分钟搭建一套适合你的集成开发环境，好用，性感。&lt;/p&gt;
+&lt;p&gt;关于如何安装和使用此神器，请点击&lt;a href=&quot;https://github.com/spf13/spf13-vim&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;链接&lt;/a&gt;。要想玩好她，还是要花些时日了解她，熟悉她，调教她，这个我真帮不了你。&lt;/p&gt;
+&lt;h3 id=&quot;欲罢不能&quot;&gt;&lt;a href=&quot;#欲罢不能&quot; class=&quot;headerlink&quot; title=&quot;欲罢不能&quot;&gt;&lt;/a&gt;欲罢不能&lt;/h3&gt;&lt;p&gt;接下来主要讲那些会让你欲罢不能的插件与配置（基本上是其内置）&lt;/p&gt;
+&lt;p&gt;主要涉及&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;配色&lt;/li&gt;
+&lt;li&gt;字体&lt;/li&gt;
+&lt;li&gt;文件(夹)浏览操作&lt;/li&gt;
+&lt;li&gt;文件查找&lt;/li&gt;
+&lt;li&gt;内容查找&lt;/li&gt;
+&lt;li&gt;buffer管理&lt;/li&gt;
+&lt;li&gt;补全&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;配色&quot;&gt;&lt;a href=&quot;#配色&quot; class=&quot;headerlink&quot; title=&quot;配色&quot;&gt;&lt;/a&gt;配色&lt;/h4&gt;&lt;h4 id=&quot;字体&quot;&gt;&lt;a href=&quot;#字体&quot; class=&quot;headerlink&quot; title=&quot;字体&quot;&gt;&lt;/a&gt;字体&lt;/h4&gt;&lt;p&gt;推荐: Source-Code-Pro&lt;a href=&quot;https://github.com/adobe-fonts/source-code-pro&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/adobe-fonts/source-code-pro&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;文件-夹-浏览操作&quot;&gt;&lt;a href=&quot;#文件-夹-浏览操作&quot; class=&quot;headerlink&quot; title=&quot;文件(夹)浏览操作&quot;&gt;&lt;/a&gt;文件(夹)浏览操作&lt;/h4&gt;&lt;p&gt;推荐: NerdTree&lt;br&gt;&lt;a href=&quot;https://github.com/scrooloose/nerdtree&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/scrooloose/nerdtree&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;文件查找&quot;&gt;&lt;a href=&quot;#文件查找&quot; class=&quot;headerlink&quot; title=&quot;文件查找&quot;&gt;&lt;/a&gt;文件查找&lt;/h4&gt;&lt;h4 id=&quot;内容查找&quot;&gt;&lt;a href=&quot;#内容查找&quot; class=&quot;headerlink&quot; title=&quot;内容查找&quot;&gt;&lt;/a&gt;内容查找&lt;/h4&gt;&lt;p&gt;在同一个文件内/&lt;/p&gt;
+&lt;h4 id=&quot;buffer管理&quot;&gt;&lt;a href=&quot;#buffer管理&quot; class=&quot;headerlink&quot; title=&quot;buffer管理&quot;&gt;&lt;/a&gt;buffer管理&lt;/h4&gt;&lt;h4 id=&quot;补全&quot;&gt;&lt;a href=&quot;#补全&quot; class=&quot;headerlink&quot; title=&quot;补全&quot;&gt;&lt;/a&gt;补全&lt;/h4&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Vim 本文主要讲vim的学习，适用对象：码农&lt;/p&gt;
+&lt;h2 id=&quot;入门（她没有你想得那么难）&quot;&gt;&lt;a href=&quot;#入门（她没有你想得那么难）&quot; class=&quot;headerlink&quot; title=&quot;入门（她没有你想得那么难）&quot;&gt;&lt;/a&gt;入门（她没有你想得那么难）&lt;/h
+    
+    </summary>
+    
+      <category term="toolbox" scheme="http://haitongz.github.io/categories/toolbox/"/>
+    
+    
+      <category term="vim" scheme="http://haitongz.github.io/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo hello world</title>
