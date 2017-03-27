@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://haitongz.github.io/2017/03/07/c-unit-test-for-class-private-member/</loc>
+    
+    <lastmod>2017-03-25T16:27:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://haitongz.github.io/2017/03/19/tmux/</loc>
     
     <lastmod>2017-03-19T13:25:03.000Z</lastmod>
@@ -9,9 +16,9 @@
   </url>
   
   <url>
-    <loc>http://haitongz.github.io/2017/03/07/c-unit-test-for-class-private-member/</loc>
+    <loc>http://haitongz.github.io/tags/index.html</loc>
     
-    <lastmod>2017-03-07T15:28:36.000Z</lastmod>
+    <lastmod>2017-03-19T13:11:27.000Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>http://haitongz.github.io/categories/index.html</loc>
     
     <lastmod>2016-05-18T14:40:10.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://haitongz.github.io/tags/index.html</loc>
-    
-    <lastmod>2016-05-18T14:37:37.000Z</lastmod>
     
   </url>
   

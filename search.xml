@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[tmux]]></title>
+      <url>%2F2017%2F03%2F19%2Ftmux%2F</url>
+      <content type="text"><![CDATA[Tmux 使用命令行 tmux new -s name 新建会话 tmux a[ttach] -t session_name 重新连接会话 tmux ls 显示保存的会话 tmux kill-session -t $session_name 删除指定session tmux 内部命令下列的[prefix] 表示 ctrl + b session 操作 命名目前session[prefix] $ 切換session(列表模式)[prefix] s 切換回上一個使用的session[prefix] l window操作 新建window[prefix] c 切換到上/下一个window[prefix] p (上)[prefix] n (下) 切換至指定window (數字鍵/列表)[prefix] [0-9] (數字鍵)[prefix] w (列表選項) 重新命名window[prefix] , 修改window編號 - 修改window順序[prefix] . 删除window[prefix] &amp; Panel操作 將panel分為上下兩塊[prefix] “ 將panel分為左右兩塊[prefix] % 關閉目前的panel[prefix] x 將目前的panel為新視窗開啟[prefix] ! 顯示panel編號[prefix] q 切換panel[prefix] [方向鍵] 按顺序在pane之间移动/选择当着pane的下一个[prefix] o 切換panel layout[prefix] [space]/空格 在同一个window里左右移动pane[prefix] { （往左边，往上面）[prefix] } （往右边，往下面） 当前面板最大化（tmux1.8加入的功能）[prefix] z 逆时针旋转当前窗口的面板[prefix] Alt+o 顺时针旋转当前窗口的面板[prefix] Ctrl+o misc big clock[prefix] t list shortcuts[prefix] ? issue 滚屏问题[prefix] [ 进入复制模式，可以用鼠标上下移动查看内容,复制内容的话可以用alt+鼠标选定（popclip拷贝）]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[C++ 对私有成员的单元测试c++ unit test for class private member]]></title>
+      <url>%2F2017%2F03%2F07%2Fc-unit-test-for-class-private-member%2F</url>
+      <content type="text"><![CDATA[C++ 对私有成员的单元测试本文记录了如果用 gtest 对 C++ 进行单元测试 Why既然是类私有成员当然是不希望外部可以访问的，会提示私有成员无法访问。 HowC++ 如果想在外部访问类的私有成员，可以将外部函数定义成友元；gtest 正是使用此方法，将对应的测试函数定义成类的友元。付出的代价是对原代码的侵入。 我们用一个例子来描述： 原始类： 123456789class Example&#123; public: Example():number(0)&#123;&#125; ... private: SetNum(); int number;&#125;; 测试 Example 私有成员: 需要在代码文件中增加 gtest 头文件 1#include &quot;gtest/gtest_prod.h&quot; Example类增加gtest提供的宏FRIEND_TEST 1FRIEND_TEST(ExmapleTest, testSetNum); 表示把TEST(ExampleTest, testSetNum) 设置为友元 此时的类文件： 1234567891011#include &quot;gtest/gtest_prod.h&quot;class Example&#123; public: Example():number(0)&#123;&#125; ... FRIEND_TEST(ExampleTest, testSetNum); private: SetNum(); int number;&#125;; 测试代码 123456TEST(ExampleTest, testNumber)&#123;Example example;SetNum(1);...EXPECT_EQ(1,example.number);&#125; 注: 有 namespace 时需要保持与被测试类一致]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[vim practice (草稿)]]></title>
+      <url>%2F2016%2F05%2F28%2Fvim-practice%2F</url>
+      <content type="text"><![CDATA[Vim 本文主要讲vim的学习，适用对象：码农 入门（她没有你想得那么难）推荐coolshell的简明 Vim 练级攻略 以及 给程序员的VIM速查卡 建议初学者把速查卡打印下来，最好是彩色打印下来粘贴在电脑旁边。 深入 (原来她这么美)迷茫入门相信大多数人都没有问题，这个时候基本的vim操作已经不在话下。接下来大家遇到的问题往往是: vim 不能满足开发需求 vim 的插件好难配置，没有统一的插件管理工具 vim 找不到合适自己用的插件 插件竟然有bug，快捷键冲突 vim 不够智能，希望像IDE那样 懒，没有时间了解和配置 放弃/忍受结果就是要么继续忍受不够强大的裸vim/配置麻烦的vim,要不就转向了IDE的怀抱 神器其实办法是有的，经历各种插件折磨后，发现此等神器spf13-vim， 再也不用瞎折腾了。她是vim 插件与配置的一个发行版本，包括一整套精心挑选的常用插件，基于Vundle的插件管理方式方便扩展以及更新，大大降低vim 的折腾成本，你值得拥有。不仅如此她适用于Vim, GVim和MacVim，可运行在Windows, Linux, Mac上。总之熟悉了她，你可以在任何有网络的地方，分分钟搭建一套适合你的集成开发环境，好用，性感。 关于如何安装和使用此神器，请点击链接。要想玩好她，还是要花些时日了解她，熟悉她，调教她，这个我真帮不了你。 欲罢不能接下来主要讲那些会让你欲罢不能的插件与配置（基本上是其内置） 主要涉及 配色 字体 文件(夹)浏览操作 文件查找 内容查找 buffer管理 补全 配色字体推荐: Source-Code-Prohttps://github.com/adobe-fonts/source-code-pro 文件(夹)浏览操作推荐: NerdTreehttps://github.com/scrooloose/nerdtree 文件查找内容查找在同一个文件内/ buffer管理补全]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[hexo hello world]]></title>
+      <url>%2F2016%2F05%2F18%2Fhello-world-hexo%2F</url>
+      <content type="text"><![CDATA[hexo 使用快捷键1234567hexo n &quot;hello world&quot;mvim source/_posts/hello-world.mdhexo g #生成hexo s #预览hexo d #部署hexo d -g #生成加部署hexo s -g #预览加部署]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>%2F2016%2F05%2F18%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+  
+  
+</search>
