@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haitongz.github.io/"/>
-  <updated>2017-03-19T13:25:03.000Z</updated>
+  <updated>2017-03-29T02:02:52.000Z</updated>
   <id>http://haitongz.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://haitongz.github.io/2017/03/19/tmux/"/>
     <id>http://haitongz.github.io/2017/03/19/tmux/</id>
     <published>2017-03-19T12:59:15.000Z</published>
-    <updated>2017-03-19T13:25:03.000Z</updated>
+    <updated>2017-03-29T02:02:52.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Tmux-使用&quot;&gt;&lt;a href=&quot;#Tmux-使用&quot; class=&quot;headerlink&quot; title=&quot;Tmux 使用&quot;&gt;&lt;/a&gt;Tmux 使用&lt;/h1&gt;&lt;h2 id=&quot;命令行&quot;&gt;&lt;a href=&quot;#命令行&quot; class=&quot;headerlink&quot; title=&quot;命令行&quot;&gt;&lt;/a&gt;命令行&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;tmux new -s name 新建会话&lt;/li&gt;
@@ -31,26 +31,26 @@
 &lt;h2 id=&quot;tmux-内部命令&quot;&gt;&lt;a href=&quot;#tmux-内部命令&quot; class=&quot;headerlink&quot; title=&quot;tmux 内部命令&quot;&gt;&lt;/a&gt;tmux 内部命令&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;下列的[prefix] 表示 ctrl + b&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&quot;session-操作&quot;&gt;&lt;a href=&quot;#session-操作&quot; class=&quot;headerlink&quot; title=&quot;session 操作&quot;&gt;&lt;/a&gt;session 操作&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;命名目前session&lt;br&gt;[prefix] $&lt;/li&gt;
-&lt;li&gt;切換session(列表模式)&lt;br&gt;[prefix] s&lt;/li&gt;
-&lt;li&gt;切換回上一個使用的session&lt;br&gt;[prefix] l&lt;/li&gt;
+&lt;li&gt;切换session(列表模式)&lt;br&gt;[prefix] s&lt;/li&gt;
+&lt;li&gt;切换回上一个使用的session&lt;br&gt;[prefix] l&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;window操作&quot;&gt;&lt;a href=&quot;#window操作&quot; class=&quot;headerlink&quot; title=&quot;window操作&quot;&gt;&lt;/a&gt;window操作&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;新建window&lt;br&gt;[prefix] c&lt;/li&gt;
-&lt;li&gt;切換到上/下一个window&lt;br&gt;[prefix] p   (上)&lt;br&gt;[prefix] n   (下)&lt;/li&gt;
-&lt;li&gt;切換至指定window (數字鍵/列表)&lt;br&gt;[prefix] [0-9]   (數字鍵)&lt;br&gt;[prefix] w   (列表選項)&lt;/li&gt;
+&lt;li&gt;切换到上/下一个window&lt;br&gt;[prefix] p   (上)&lt;br&gt;[prefix] n   (下)&lt;/li&gt;
+&lt;li&gt;切换至指定window (数字键/列表)&lt;br&gt;[prefix] [0-9]   (数字键)&lt;br&gt;[prefix] w   (列表选项)&lt;/li&gt;
 &lt;li&gt;重新命名window&lt;br&gt;[prefix] ,&lt;/li&gt;
-&lt;li&gt;修改window編號 - 修改window順序&lt;br&gt;[prefix] .&lt;/li&gt;
+&lt;li&gt;修改window编号 - 修改window顺序&lt;br&gt;[prefix] .&lt;/li&gt;
 &lt;li&gt;删除window&lt;br&gt;[prefix] &amp;amp;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;Panel操作&quot;&gt;&lt;a href=&quot;#Panel操作&quot; class=&quot;headerlink&quot; title=&quot;Panel操作&quot;&gt;&lt;/a&gt;Panel操作&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;將panel分為上下兩塊&lt;br&gt;[prefix] “&lt;/li&gt;
-&lt;li&gt;將panel分為左右兩塊&lt;br&gt;[prefix] %&lt;/li&gt;
-&lt;li&gt;關閉目前的panel&lt;br&gt;[prefix] x&lt;/li&gt;
-&lt;li&gt;將目前的panel為新視窗開啟&lt;br&gt;[prefix] !&lt;/li&gt;
-&lt;li&gt;顯示panel編號&lt;br&gt;[prefix] q&lt;/li&gt;
-&lt;li&gt;切換panel&lt;br&gt;[prefix] [方向鍵]&lt;/li&gt;
+&lt;li&gt;将panel分为上下两块&lt;br&gt;[prefix] “&lt;/li&gt;
+&lt;li&gt;将panel分为左右两块&lt;br&gt;[prefix] %&lt;/li&gt;
+&lt;li&gt;关闭目前的panel&lt;br&gt;[prefix] x&lt;/li&gt;
+&lt;li&gt;将目前的panel为新视窗开启&lt;br&gt;[prefix] !&lt;/li&gt;
+&lt;li&gt;显示panel编号&lt;br&gt;[prefix] q&lt;/li&gt;
+&lt;li&gt;切换panel&lt;br&gt;[prefix] [方向键]&lt;/li&gt;
 &lt;li&gt;按顺序在pane之间移动/选择当着pane的下一个&lt;br&gt;[prefix] o&lt;/li&gt;
-&lt;li&gt;切換panel layout&lt;br&gt;[prefix] [space]/空格&lt;/li&gt;
+&lt;li&gt;切换panel layout&lt;br&gt;[prefix] [space]/空格&lt;/li&gt;
 &lt;li&gt;在同一个window里左右移动pane&lt;br&gt;[prefix] { （往左边，往上面）&lt;br&gt;[prefix] } （往右边，往下面）&lt;/li&gt;
 &lt;li&gt;当前面板最大化（tmux1.8加入的功能）&lt;br&gt;[prefix] z &lt;/li&gt;
 &lt;li&gt;逆时针旋转当前窗口的面板&lt;br&gt;[prefix] Alt+o&lt;/li&gt;
